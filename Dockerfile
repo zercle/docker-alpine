@@ -10,7 +10,10 @@ RUN	echo "root:P@ssw0rd" | chpasswd
 # Add public DNS && config repositories
 RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 	echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && \
-	echo 'http://dl-cdn.alpinelinux.org/alpine/latest-stable/main' > /etc/apk/repositories
+	echo 'http://dl-cdn.alpinelinux.org/alpine/latest-stable/main' > /etc/apk/repositories && \
+	echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
+	echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+	echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 
 # Add basic package 
 RUN	apk update && \
