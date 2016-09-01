@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
 ARG	timezone=Asia/Bangkok
-ENV	TIMEZONE Asia/Bangkok
+ENV	TIMEZONE $timezone
 ENV	TERM xterm
 
 # Change root password
@@ -18,7 +18,18 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 
 # Add basic package 
 RUN	apk update && \
-	apk add --no-cache openrc openssl wget curl git nano openssh htop zsh bash tzdata && \
+	apk add --no-cache \
+		openrc \
+		openssl \
+		wget \
+		curl \
+		git \
+		nano \
+		openssh \
+		htop \
+		zsh \
+		bash \
+		tzdata && \
 	rc-update add sshd
 
 # Change timezone
