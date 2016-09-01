@@ -2,6 +2,7 @@ FROM alpine:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
 ARG	timezone=Asia/Bangkok
+ENV	TIMEZONE Asia/Bangkok
 ENV	TERM xterm
 
 # Change root password
