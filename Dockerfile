@@ -39,7 +39,7 @@ RUN	apk update && \
 RUN	echo $timezone > /etc/timezone && \
 	cp /usr/share/zoneinfo/$timezone /etc/localtime && \
 	mkdir /run/openrc && \
-	touch: /run/openrc/softlevel
+	touch /run/openrc/softlevel
 
 # Clean file
 RUN	rm -rf /var/cache/apk/*
