@@ -17,9 +17,7 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 	echo 'http://dl-cdn.alpinelinux.org/alpine/latest-stable/main' > /etc/apk/repositories && \
 	echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-	echo '@community http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
-	mkdir /run/openrc && \
-	touch: /run/openrc/softlevel
+	echo '@community http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 
 # Add basic package 
 RUN	apk update && \
@@ -39,7 +37,9 @@ RUN	apk update && \
 
 # Change timezone
 RUN	echo $timezone > /etc/timezone && \
-	cp /usr/share/zoneinfo/$timezone /etc/localtime
+	cp /usr/share/zoneinfo/$timezone /etc/localtime && \
+	mkdir /run/openrc && \
+	touch: /run/openrc/softlevel
 
 # Clean file
 RUN	rm -rf /var/cache/apk/*
