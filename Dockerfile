@@ -23,7 +23,7 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 	touch /run/openrc/softlevel
 
 # Add basic package 
-RUN	apk update && apk upgrade \
+RUN	apk update && apk upgrade && \
 	apk add --no-cache \
 		openrc \
 		openssl \
