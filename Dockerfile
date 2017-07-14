@@ -1,4 +1,4 @@
-# Alpine Linux 3.5
+# Alpine Linux 3.6
 FROM alpine:latest
 MAINTAINER bouroo <bouroo@gmail.com>
 
@@ -16,14 +16,14 @@ RUN	echo "root:P@ssw0rd" | chpasswd
 RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 	echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && \
 	echo 'http://dl-cdn.alpinelinux.org/alpine/latest-stable/main' > /etc/apk/repositories && \
+	echo '@community http://dl-cdn.alpinelinux.org/alpine/latest-stable/community' >> /etc/apk/repositories && \
 	echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-	echo '@community http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
 	mkdir /run/openrc && \
 	touch /run/openrc/softlevel
 
 # Add basic package 
-RUN	apk update && \
+RUN	apk update && apk upgrade \
 	apk add --no-cache \
 		openrc \
 		openssl \
