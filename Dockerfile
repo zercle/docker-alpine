@@ -26,7 +26,7 @@ RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf && \
 RUN	apk update && apk upgrade && \
 	apk add --no-cache \
 		openrc \
-		openssl \
+		libressl \
 		wget \
 		curl \
 		git \
