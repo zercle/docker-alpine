@@ -1,6 +1,6 @@
 # Alpine Linux 3.6
 FROM alpine:latest
-MAINTAINER bouroo <bouroo@gmail.com>
+MAINTAINER kawin <kawinv@zercle.technology>
 
 ARG	timezone=Asia/Bangkok
 ENV	TERM xterm
