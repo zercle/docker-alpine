@@ -28,13 +28,16 @@ RUN	apk update && apk upgrade \
 		nano \
 		openssh \
 		htop \
-		zsh \
 		bash \
-		tzdata \
+		bash-completion \
+		tzdata
 
 # Change timezone
 RUN	echo $timezone > /etc/timezone \
 	&& cp /usr/share/zoneinfo/$timezone /etc/localtime
+
+# Change shell
+RUN	sed -i "s|:ash|:bash|" /etc/passwd
 
 # Clean file
 RUN	rm -rf /var/cache/apk/*
