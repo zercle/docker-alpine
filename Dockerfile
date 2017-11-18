@@ -44,6 +44,6 @@ RUN	sed -i "s|:ash|:bash|" /etc/passwd
 RUN	rm -rf /var/cache/apk/*
 
 COPY	./files /
-RUN	chmod +x /root/entrypoint.sh
+RUN	chmod +x /docker-entrypoint.sh
 
-ENTRYPOINT	["/root/entrypoint.sh"]
+ENTRYPOINT	["/docker-entrypoint.sh"]
