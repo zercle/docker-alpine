@@ -9,9 +9,9 @@ ENV	LANG en_US.UTF-8
 ENV	LC_ALL en_US.UTF-8
 ENV	TZ $timezone
 
-# Add public DNS && config repositories
+# Add config repositories
 RUN	echo 'https://mirror.kku.ac.th/alpine/latest-stable/main' > /etc/apk/repositories \
-	&& echo '@community https://mirror.kku.ac.th/alpine/latest-stable/community' >> /etc/apk/repositories \
+	&& echo 'https://mirror.kku.ac.th/alpine/latest-stable/community' >> /etc/apk/repositories \
 	&& echo '@edge https://mirror.kku.ac.th/alpine/edge/main' >> /etc/apk/repositories \
 	&& echo '@testing https://mirror.kku.ac.th/alpine/edge/testing' >> /etc/apk/repositories \
 	&& mkdir /run/openrc \
@@ -30,7 +30,8 @@ RUN	apk update && apk upgrade \
 		htop \
 		bash \
 		bash-completion \
-		tzdata
+		tzdata \
+		pwgen
 
 # Change timezone
 RUN	echo $timezone > /etc/timezone \
