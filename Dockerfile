@@ -9,16 +9,11 @@ ENV	LANG en_US.UTF-8
 ENV	LC_ALL en_US.UTF-8
 ENV	TZ $timezone
 
-# Change root password
-RUN	echo "root:P@ssw0rd" | chpasswd
-
 # Add public DNS && config repositories
-RUN	echo 'nameserver 64.6.64.6' > /etc/resolv.conf \
-	&& echo 'nameserver 8.8.8.8' >> /etc/resolv.conf \
-	&& echo 'http://dl-cdn.alpinelinux.org/alpine/latest-stable/main' > /etc/apk/repositories \
-	&& echo '@community http://dl-cdn.alpinelinux.org/alpine/latest-stable/community' >> /etc/apk/repositories \
-	&& echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories \
-	&& echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+RUN	echo 'https://mirror.kku.ac.th/alpine/latest-stable/main' > /etc/apk/repositories \
+	&& echo '@community https://mirror.kku.ac.th/alpine/latest-stable/community' >> /etc/apk/repositories \
+	&& echo '@edge https://mirror.kku.ac.th/alpine/edge/main' >> /etc/apk/repositories \
+	&& echo '@testing https://mirror.kku.ac.th/alpine/edge/testing' >> /etc/apk/repositories \
 	&& mkdir /run/openrc \
 	&& touch /run/openrc/softlevel
 
@@ -36,7 +31,6 @@ RUN	apk update && apk upgrade \
 		zsh \
 		bash \
 		tzdata \
-	&& rc-update add sshd
 
 # Change timezone
 RUN	echo $timezone > /etc/timezone \
@@ -47,7 +41,5 @@ RUN	rm -rf /var/cache/apk/*
 
 COPY	./files /
 RUN	chmod +x /root/entrypoint.sh
-
-EXPOSE	22
 
 ENTRYPOINT	["/root/entrypoint.sh"]
